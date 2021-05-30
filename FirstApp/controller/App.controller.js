@@ -1,12 +1,8 @@
 sap.ui.define([
-		"sap/ui/core/mvc/Controller",
-		"sap/m/MessageToast"
+		"sap/ui/core/mvc/Controller"
 	],
-	function (Controller, MessageToast) {
+	function (Controller) {
 		"use strict";
 		return Controller.extend("search.PO.controller.App", {
-			onSearchPO: function () {
-				MessageToast.show("Searching PO's");
-			}
 		});
 	});

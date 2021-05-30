@@ -1,11 +1,16 @@
-<mvc:View controllerName="search.PO.controller.App" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml">
-	<html:style>
-		.bluetext{ color:blue; }
-	</html:style>
-	<Text class="bluetext" text="Purchase Order Report"/>
-	<Input placeholder="Purchase Order Number"/>
-	<Input placeholder="Purchase Order Type"/>
-	<Input placeholder="Plant"/>
-	<Input placeholder="Company Code"/>
-	<Button text="Search" press=".onSearchPO" icon="sap-icon://search"/>
+<mvc:View controllerName="search.PO.controller.App" 
+          xmlns="sap.m" 
+          xmlns:mvc="sap.ui.core.mvc" 
+          displayBlock="true">
+	<Shell>
+		<App>
+			<pages>
+				<Page title="{i18n>homePageTitle}">
+					<content>
+						<mvc:XMLView viewName="search.PO.view.PO"/>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
 </mvc:View>
