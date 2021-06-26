@@ -43,6 +43,35 @@
 				}
 			}
 		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "search.PO.view",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"async": true
+			},
+			"routes": [{
+				"pattern": "",
+				"name": "pohome",
+				"target": "pohome"
+			}, {
+				"pattern": "podetail/{po}",
+				"name": "podetail",
+				"target": "podetail"
+			}],
+			"targets": {
+				"pohome": {
+					"viewId": "PO",
+					"viewName": "PO"
+				},
+				"podetail": {
+					"viewId": "PODetail",
+					"viewName": "PODetail"
+				}
+			}
+		},
 		"models": {
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",

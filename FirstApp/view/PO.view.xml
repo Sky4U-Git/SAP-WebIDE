@@ -1,21 +1,39 @@
 <mvc:View controllerName="search.PO.controller.PO" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" displayBlock="true">
-	<Text class="sapUiLargeMarginBegin" text="Purchase Order Report"/>
-	<Input class="sapUiLargeMarginBegin" placeholder="{i18n>poNumber}" value="{/poInput/poNumber}"
-		description="Entered PO is {/poInput/poNumber}" valueLiveUpdate="true"/>
-	<Input class="sapUiLargeMarginBegin" placeholder="{i18n>poType}" value="{/poInput/poType}"
-		description="Entered PO type is {/poInput/poType}" valueLiveUpdate="true"/>
-	<Input class="sapUiLargeMarginBegin" placeholder="{i18n>plant}" value="{/poInput/plant}" description="Entered Plant is {/poInput/plant}"
-		valueLiveUpdate="true"/>
-	<Input class="sapUiLargeMarginBegin" placeholder="{i18n>companycode}" value="{/poInput/companycode}"
-		description="Entered Company Code is {/poInput/companycode}" valueLiveUpdate="true"/>
-	<Button class="sapUiLargeMarginBegin" text="{i18n>search}" press=".onSearchPO"/>
-	<List headerText="{i18n>POList}" class="sapUiResponsiveMargin" width="auto" items="{pos>/PurchaseOrders}">
-		<items>
-			<ObjectListItem title="{pos>Ebeln} - {pos>Matnr}"
-				number="{ parts: [{path: 'pos>Netpr'},{path: 'pos>/Waers'}], 
-				          type: 'sap.ui.model.type.Currency', 
-				          formatOptions: { showMeasure: true } }"
-				numberUnit="{pos>/Waers}"/>
-		</items>
-	</List>
+	<Page class="sapUiTinyMargin" title="{i18n>homePageTitle}">
+		<content>
+			<Text class="sapUiLargeMarginBegin" text="Purchase Order Report"/>
+			<Input class="sapUiLargeMarginBegin" placeholder="{i18n>poNumber}" value="{/poInput/poNumber}"
+				description="Entered PO is {/poInput/poNumber}" valueLiveUpdate="true"/>
+			<Input class="sapUiLargeMarginBegin" placeholder="{i18n>poType}" value="{/poInput/poType}"
+				description="Entered PO type is {/poInput/poType}" valueLiveUpdate="true"/>
+			<Input class="sapUiLargeMarginBegin" placeholder="{i18n>plant}" value="{/poInput/plant}" description="Entered Plant is {/poInput/plant}"
+				valueLiveUpdate="true"/>
+			<Input class="sapUiLargeMarginBegin" placeholder="{i18n>companycode}" value="{/poInput/companycode}"
+				description="Entered Company Code is {/poInput/companycode}" valueLiveUpdate="true"/>
+			<Button class="sapUiLargeMarginBegin" text="{i18n>search}" press=".onSearchPO"/>
+			<List id="poList" headerText="{i18n>POList}" class="sapUiResponsiveMargin" width="auto" items="{pos>/PurchaseOrders}">
+				<items>
+					<ObjectListItem title="{pos>Ebeln} - {pos>Matnr}"
+						number="{ parts: [{path: 'pos>Netpr'},{path: 'pos>Waers'}], type: 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false } }"
+						numberUnit="{pos>Waers}" numberState="{= ${pos>Netpr} > 120 ? 'Error' : 'Success' }" type="Navigation" press="showDetail">
+						<ObjectAttribute text="{pos>Plant}"/>
+						<ObjectAttribute text="{pos>Bukrs}"/>
+						<ObjectAttribute text="{pos>POType}"/>
+						<markers>
+							<ObjectMarker type="{= ${pos>POStatus} === 'CONF' ? 'Favorite' : 'Flagged' }"/>
+						</markers>
+						<firstStatus>
+							<ObjectStatus text="{ path: 'pos>POStatus', formatter: '.formatter.readablePOStatus'}"/>
+						</firstStatus>
+					</ObjectListItem>
+				</items>
+				<headerToolbar>
+					<OverflowToolbar>
+						<Button text="Sort by Company Code" press=".handleSortPress"/>
+						<Button text="Group by Company Code" press=".handleGrouptPress"/>
+					</OverflowToolbar>
+				</headerToolbar>
+			</List>
+		</content>
+	</Page>
 </mvc:View>
