@@ -1,92 +1,125 @@
 {
-	"_version": "1.3.0",
-	"sap.app": {
-		"_version": "1.3.0",
-		"id": "search.PO",
-		"type": "application",
-		"title": "{{appTitle}}",
-		"i18n": "i18n/i18n.properties",
-		"description": "{{appDescription}}",
-		"applicationVersion": {
-			"version": "1.0.0"
-		}
-	},
-	"sap.ui": {
-		"_version": "1.3.0",
-		"technology": "UI5",
-		"deviceTypes": {
-			"desktop": true,
-			"tablet": true,
-			"phone": true
-		},
-		"supportedThemes": ["sap_bluecrystal"]
-	},
-	"sap.ui5": {
-		"_version": "1.2.0",
-		"rootView": {
-			"viewName": "search.PO.view.App",
-			"type": "XML",
-			"id": "app"
-		},
-		"autoPrefixId": true,
-		"dependencies": {
-			"minUI5Version": "1.34",
-			"libs": {
-				"sap.ui.core": {
-					"minVersion": "1.34.0"
-				},
-				"sap.m": {
-					"minVersion": "1.34.0"
-				},
-				"sap.ui.layout": {
-					"minVersion": "1.34.0"
-				}
-			}
-		},
-		"routing": {
-			"config": {
-				"routerClass": "sap.m.routing.Router",
-				"viewType": "XML",
-				"viewPath": "search.PO.view",
-				"controlId": "app",
-				"controlAggregation": "pages",
-				"async": true
-			},
-			"routes": [{
-				"pattern": "",
-				"name": "pohome",
-				"target": "pohome"
-			}, {
-				"pattern": "podetail/{po}",
-				"name": "podetail",
-				"target": "podetail"
-			}],
-			"targets": {
-				"pohome": {
-					"viewId": "PO",
-					"viewName": "PO"
-				},
-				"podetail": {
-					"viewId": "PODetail",
-					"viewName": "PODetail"
-				}
-			}
-		},
-		"models": {
-			"i18n": {
-				"type": "sap.ui.model.resource.ResourceModel",
-				"settings": {
-					"bundleName": "search.PO.i18n.i18n"
-				}
-			},
-			"pos": {
-				"type": "sap.ui.model.json.JSONModel",
-				"uri": "PO.json"
-			}
-		},
-		"contentDensities": {
-			"compact": true,
-			"cozy": true
-		}
-	}
+    "_version": "1.3.0",
+    "sap.app": {
+        "_version": "1.3.0",
+        "id": "search.PO",
+        "type": "application",
+        "title": "{{appTitle}}",
+        "i18n": "i18n/i18n.properties",
+        "description": "{{appDescription}}",
+        "applicationVersion": {
+            "version": "1.0.0"
+        }
+    },
+    "sap.ui": {
+        "_version": "1.3.0",
+        "technology": "UI5",
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": [
+            "sap_bluecrystal"
+        ]
+    },
+    "sap.ui5": {
+        "_version": "1.2.0",
+        "rootView": {
+            "viewName": "search.PO.view.App",
+            "type": "XML",
+            "id": "app"
+        },
+        "autoPrefixId": true,
+        "dependencies": {
+            "minUI5Version": "1.34",
+            "libs": {
+                "sap.ui.core": {
+                    "minVersion": "1.34.0"
+                },
+                "sap.m": {
+                    "minVersion": "1.34.0"
+                },
+                "sap.ui.layout": {
+                    "minVersion": "1.34.0"
+                }
+            }
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "viewPath": "search.PO.view",
+                "controlId": "app",
+                "controlAggregation": "pages",
+                "async": true,
+                "bypassed": {
+                    "target": "invalidRoute"
+                }
+            },
+            "routes": [
+                {
+                    "pattern": "",
+                    "name": "pohome",
+                    "target": "pohome"
+                },
+                {
+                    "pattern": "podetail/{po}",
+                    "name": "podetail",
+                    "target": [
+                        "poDetail1Text",
+                        "poDetail2Text"
+                    ]
+                }
+            ],
+            "targets": {
+                "pohome": {
+                    "viewId": "PO",
+                    "viewName": "PO"
+                },
+                "podetail": {
+                    "viewId": "PODetail",
+                    "viewPath": "search.PO.view",
+                    "viewName": "PODetail"
+                },
+                "invalidRoute": {
+                    "viewId": "Invalid",
+                    "viewName": "Invalid",
+                    "transition": "show"
+                },
+                "poDetail1Text": {
+                    "viewId": "PODetail1",
+                    "parent": "podetail",
+                    "viewPath": "search.PO.view",
+                    "viewName": "PODetail1",
+                    "controlId": "PODetailParent",
+                    "controlAggregation": "content"
+                },
+                "poDetail2Text": {
+                    "viewId": "PODetail2",
+                    "parent": "podetail",
+                    "viewPath": "search.PO.view",
+                    "viewName": "PODetail2",
+                    "controlId": "PODetailParent",
+                    "controlAggregation": "content"
+                }
+            }
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "search.PO.i18n.i18n"
+                }
+            },
+            "pos": {
+                "type": "sap.ui.model.json.JSONModel",
+                "uri": "PO.json"
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        }
+    }
 }

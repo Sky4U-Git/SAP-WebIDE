@@ -1,4 +1,4 @@
-<mvc:View controllerName="search.PO.controller.PO" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" displayBlock="true">
+<mvc:View class="sapUiMediumMarginBeginEnd" controllerName="search.PO.controller.PO" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:form="sap.ui.layout.form" displayBlock="true">
 	<Page class="sapUiTinyMargin" title="{i18n>homePageTitle}">
 		<content>
 			<Text class="sapUiLargeMarginBegin" text="Purchase Order Report"/>
@@ -33,7 +33,19 @@
 						<Button text="Group by Company Code" press=".handleGrouptPress"/>
 					</OverflowToolbar>
 				</headerToolbar>
-			</List>
-		</content>
+			</List>			
+            <Panel id="poDetailPanel" headerText="{i18n>poDetailPanel}" class="sapUiResponsiveMargin" width="auto">
+				<form:SimpleForm editable="true" layout="ColumnLayout">
+					<Label text="{i18n>poNumber}"/>
+					<Input value="{pos>Ebeln}"/>
+					<Label text="{i18n>poType}"/>
+					<Input value="{pos>POType}"/>
+					<Label text="{i18n>plant}"/>
+					<Input value="{pos>Plant}"/>
+					<Label text="{i18n>companyCode}"/>
+					<Input value="{pos>Bukrs}"/>
+				</form:SimpleForm>
+			</Panel>
+            </content>
 	</Page>
 </mvc:View>

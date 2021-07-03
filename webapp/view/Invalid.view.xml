@@ -1,0 +1,10 @@
+<mvc:View
+   controllerName="search.PO.controller.Invalid"
+   xmlns="sap.m"
+   xmlns:mvc="sap.ui.core.mvc">
+   <MessagePage
+      title="{i18n>InvalPath}"
+      description="{i18n>InvalPath.description}"
+      showNavButton="true"
+	    navButtonPress="onBack"/>
+</mvc:View>
